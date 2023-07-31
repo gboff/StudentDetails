@@ -26,3 +26,14 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+bootRun {
+    workingDir("..")
+    environment = [
+             PG_PASSWD: "$PG_PASSWD",
+             PG_PORT: "$PG_PORT",
+             PG_HOST: "$PG_HOST",
+             PG_DATABASE: "$PG_DATABASE",
+             PG_USER: "$PG_USER"
+    ]
+}
