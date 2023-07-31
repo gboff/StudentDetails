@@ -30,3 +30,4 @@ test {
 task("stage") {
     dependsOn("shadowJar")
 }
+
