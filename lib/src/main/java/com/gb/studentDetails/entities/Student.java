@@ -20,9 +20,7 @@ public class Student {
 	
 	private String name;
 	
-	@NumberFormat
-	@Size(min = 10, max= 10)
-	@NotEmpty(message="mobile number must be provided")
+
 	private String mobileNumber;
 	
 	private String className;
@@ -31,8 +29,7 @@ public class Student {
 	
 	private String dob;
 	
-	@NumberFormat
-	@Size(min = 12, max= 12)
+
 	private String aadhar;
 	
 	private String address;
