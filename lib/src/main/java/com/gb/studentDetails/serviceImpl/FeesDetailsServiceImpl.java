@@ -41,15 +41,25 @@ public class FeesDetailsServiceImpl implements FeesDetailsService {
 			int studentIdReal = studentActual.getStudentId();
 			LocalDateTime timestamp = LocalDateTime.now();
 			
-			int oldB = feesDetails.getOldBalance();
+			Integer oldB = feesDetails.getOldBalance();
+			if (oldB == null)
+				oldB = 0;
 			
-			int t1B = feesDetails.getTerm1Balance();
-			int t2B = feesDetails.getTerm2Balance();
-			int t3B = feesDetails.getTerm3Balance();
+			Integer t1B = feesDetails.getTerm1Balance();
+			if (t1B == null)
+				t1B =0;
 			
-			int curB = t1B + t2B +t3B;
+			Integer t2B = feesDetails.getTerm2Balance();
+			if(t2B == null)
+				t2B =0;
 			
-			int totalB = oldB+curB;
+			Integer t3B = feesDetails.getTerm3Balance();
+			if(t3B == null)
+				t3B = 0;
+			
+			Integer curB = t1B + t2B +t3B;
+			
+			Integer totalB = oldB+curB;
 			
 			feesDetails.setCurrentBalance(curB);
 			feesDetails.setStudentId(studentIdReal);
@@ -68,33 +78,61 @@ public class FeesDetailsServiceImpl implements FeesDetailsService {
 	@Override
 	public FeesDetails updateFees(FeesDetails feesDetails)
 	{
-		int id = feesDetails.getFeesId();
-		Optional<FeesDetails> feesDetails1 = feesRepo.findById(id);
-		if(feesDetails1.isPresent())
+		String rollNumber = feesDetails.getStudentRollNumber();
+		FeesDetails cust = feesRepo.getFeesDetailsByRollNumber(rollNumber);
+		if(cust!=null)
 		{
-			int studentId1 = feesDetails.getStudentId();
-			Optional <Student> student1 = studentRepo.findById(studentId1);
-			if(student1.isPresent())
-			{
-				Student studentActual = studentRepo.getById(studentId1);
-				String studentName1 = studentActual.getName();
-				String studentClass1 = studentActual.getClassName();
-				LocalDateTime timestamp = LocalDateTime.now();
-				
-				int oldB = feesDetails.getOldBalance();
-				int curB = feesDetails.getCurrentBalance();
-				
-				int totalB = oldB + curB;
-				
-				feesDetails.setLogDate(timestamp);
-				feesDetails.setStudentClass(studentClass1);
-				feesDetails.setStudentName(studentName1);
-				feesDetails.setTotalBalance(totalB);
-				
-				return feesRepo.save(feesDetails);
-			}
+			int studentId = cust.getStudentId();
+			LocalDateTime timestamp = LocalDateTime.now();
+			String name = cust.getStudentName();
+			String className = cust.getStudentClass();
+			feesDetails.setStudentName(name);
+			feesDetails.setStudentClass(className);
+			feesDetails.setStudentId(studentId);
+			Integer oldBI = feesDetails.getOldBalance();
+			Integer oldBAct = cust.getOldBalance();
+			Integer oldB =0;
+			if(oldBI != null)
+				oldB = oldBI;
 			else
-				throw new StudentNotFoundException("StudentId does not match");
+				oldB = oldBAct;
+
+			Integer term1I = feesDetails.getTerm1Balance();
+			Integer term1Act = cust.getTerm1Balance();
+			Integer term1 = 0;
+			if(term1I != null)
+				term1 = term1I;
+			else
+				term1 = term1Act;
+			
+			Integer term2I = feesDetails.getTerm2Balance();
+			Integer term2Act = cust.getTerm2Balance();
+			Integer term2 = 0;
+			if(term2I != null)
+				term2 = term2I;
+			else
+				term2 = term2Act;
+			
+			Integer term3I = feesDetails.getTerm3Balance();
+			Integer term3Act = cust.getTerm3Balance();
+			Integer term3 = 0;
+			if(term3I != null)
+				term3 = term3I;
+			else
+				term3 = term3Act;
+			
+			feesDetails.setTerm1Balance(term1);
+			feesDetails.setTerm2Balance(term2);
+			feesDetails.setTerm3Balance(term3);
+			
+			Integer curB = term1+term2+term3;
+			Integer totB = oldB+curB;
+			feesDetails.setOldBalance(oldB);
+			feesDetails.setCurrentBalance(curB);
+			feesDetails.setTotalBalance(totB);
+			feesDetails.setLogDate(timestamp);
+			feesRepo.delete(cust);
+			return feesRepo.save(feesDetails);
 		}
 		else
 			throw new FeesDetailsNotFoundException("Fees Details not found");
