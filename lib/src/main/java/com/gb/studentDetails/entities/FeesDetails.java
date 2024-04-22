@@ -31,15 +31,15 @@ public class FeesDetails {
 	
 	private String studentRollNumber;
 	
-	private int oldBalance;
+	private Integer oldBalance;
 	
-	private int term1Balance;
-	private int term2Balance;
-	private int term3Balance;
+	private Integer term1Balance;
+	private Integer term2Balance;
+	private Integer term3Balance;
 	
-	private int currentBalance;
+	private Integer currentBalance;
 	
-	private int totalBalance;
+	private Integer totalBalance;
 
 	public LocalDateTime getLogDate() {
 		return LogDate;
@@ -73,27 +73,27 @@ public class FeesDetails {
 		this.studentClass = studentClass;
 	}
 
-	public int getOldBalance() {
+	public Integer getOldBalance() {
 		return oldBalance;
 	}
 
-	public void setOldBalance(int oldBalance) {
+	public void setOldBalance(Integer oldBalance) {
 		this.oldBalance = oldBalance;
 	}
 
-	public int getCurrentBalance() {
+	public Integer getCurrentBalance() {
 		return currentBalance;
 	}
 
-	public void setCurrentBalance(int currentBalance) {
+	public void setCurrentBalance(Integer currentBalance) {
 		this.currentBalance = currentBalance;
 	}
 
-	public int getTotalBalance() {
+	public Integer getTotalBalance() {
 		return totalBalance;
 	}
 
-	public void setTotalBalance(int totalBalance) {
+	public void setTotalBalance(Integer totalBalance) {
 		this.totalBalance = totalBalance;
 	}
 
@@ -113,32 +113,32 @@ public class FeesDetails {
 	
 	
 
-	public int getTerm1Balance() {
+	public Integer getTerm1Balance() {
 		return term1Balance;
 	}
 
-	public void setTerm1Balance(int term1Balance) {
+	public void setTerm1Balance(Integer term1Balance) {
 		this.term1Balance = term1Balance;
 	}
 
-	public int getTerm2Balance() {
+	public Integer getTerm2Balance() {
 		return term2Balance;
 	}
 
-	public void setTerm2Balance(int term2Balance) {
+	public void setTerm2Balance(Integer term2Balance) {
 		this.term2Balance = term2Balance;
 	}
 
-	public int getTerm3Balance() {
+	public Integer getTerm3Balance() {
 		return term3Balance;
 	}
 
-	public void setTerm3Balance(int term3Balance) {
+	public void setTerm3Balance(Integer term3Balance) {
 		this.term3Balance = term3Balance;
 	}
 
 	public FeesDetails(int feesId, LocalDateTime logDate, int studentId, String studentName, String studentClass, String studentRollNumber,
-			int oldBalance,int term1Balance,int term2Balance,int term3Balance, int currentBalance, int totalBalance) {
+			Integer oldBalance,Integer term1Balance,Integer term2Balance,Integer term3Balance, Integer currentBalance, Integer totalBalance) {
 		super();
 		this.feesId = feesId;
 		LogDate = logDate;
