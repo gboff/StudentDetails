@@ -49,4 +49,9 @@ public class FeesDetailsController {
 	{
 		return feesServ.getFeesDetailsByRollNumber(studentRollNumber);
 	}
+
+	@DeleteMapping("/deleteFeesDetails/{feesId}")
+	public FeesDetails deleteFeesDetails(@PathVariable("feesId") int feesId) {
+		return feesServ.deleteFeesDetails(feesId);
+	}
 }
