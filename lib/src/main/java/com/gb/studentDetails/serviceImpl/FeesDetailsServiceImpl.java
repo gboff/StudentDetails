@@ -153,4 +153,18 @@ public class FeesDetailsServiceImpl implements FeesDetailsService {
 		else
 			throw new FeesDetailsNotFoundException("Roll Number Invalid");	
 	}
+
+	@Override
+	public FeesDetails deleteFeesDetails(int feesId) {
+		Optional<FeesDetails> cust=feesRepo.findById(feesId);
+		if(cust.isPresent()) {
+			feesRepo.delete(cust.get());
+		    return cust.get();
+		}
+		else
+		{
+			throw new FeesDetailsNotFoundException("Roll Number Invalid");
+		}
+
+	}
 }
