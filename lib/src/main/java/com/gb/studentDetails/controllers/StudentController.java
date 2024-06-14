@@ -55,4 +55,10 @@ public class StudentController {
 	{
 		return studentServ.showAllStudents();
 	}
+
+	@GetMapping("/getStudentById/{studentId}")
+	public Student getStudentById(@PathVariable int studentId)
+	{
+		return studentServ.getStudentById(studentId);
+	}
 }
