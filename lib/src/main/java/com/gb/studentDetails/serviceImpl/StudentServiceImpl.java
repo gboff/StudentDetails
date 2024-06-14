@@ -132,4 +132,17 @@ public class StudentServiceImpl implements StudentService {
 	{
 		return studentRepo.findAll();	
 	}
+
+	@Override
+	public Student getStudentById(int studentId)
+	{
+		Student student = studentRepo.getStudent(studentId);
+		if(student!=null)
+		{
+			return student;
+		
+		}
+		else
+			throw new StudentNotFoundException("Unexpected error");
+	}
 }
