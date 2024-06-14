@@ -167,4 +167,17 @@ public class FeesDetailsServiceImpl implements FeesDetailsService {
 		}
 
 	}
+
+	@Override
+	public FeesDetails getFeesDetailsByFeesId(int feesId)
+	{
+		FeesDetails feesDetail = feesRepo.getFeesDetailsById(feesId);
+		if(feesDetail!=null)
+		{
+			return feesDetail;
+		}
+		else
+			throw new FeesDetailsNotFoundException("Not Found// Get By ID");
+		
+	}
 }
