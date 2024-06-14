@@ -54,4 +54,10 @@ public class FeesDetailsController {
 	public FeesDetails deleteFeesDetails(@PathVariable("feesId") int feesId) {
 		return feesServ.deleteFeesDetails(feesId);
 	}
+
+	@GetMapping("/getFeesDetailsById/{feesId}")
+	public FeesDetails getFeesDetailsByFeesId(@PathVariable("feesId") int feesId)
+	{
+		return feesServ.getFeesDetailsByFeesId(feesId);
+	}
 }
