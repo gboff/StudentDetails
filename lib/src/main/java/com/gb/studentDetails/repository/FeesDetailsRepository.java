@@ -13,5 +13,8 @@ public interface FeesDetailsRepository extends JpaRepository<FeesDetails, Intege
 	
 	@Query("from FeesDetails where studentRollNumber=?1")
 	public FeesDetails getFeesDetailsByRollNumber(String studentRollNumber);
+	
+	@Query("from FeesDetails where feesId =?1")
+	public FeesDetails getFeesDetailsById(int feesId);
 
 }
