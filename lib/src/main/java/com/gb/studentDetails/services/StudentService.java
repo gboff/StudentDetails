@@ -14,5 +14,6 @@ public interface StudentService {
 	
 	public Student getStudentByRollNumber(String rollNumber);
 	public Student getStudentByName(String name);
+	public Student getStudentById(int studentId);
 	
 }
