@@ -10,4 +10,5 @@ public interface FeesDetailsService {
 	public FeesDetails deleteFeesDetails(int feesId);
 	public List<FeesDetails> showAllFeesDetails();
 	public FeesDetails getFeesDetailsByRollNumber(String studentRollNumber);
+	public FeesDetails getFeesDetailsByFeesId(int feesId);
 }
